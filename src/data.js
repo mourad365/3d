@@ -19,7 +19,7 @@ export const artifacts = [
     },
     {
         id: '2',
-        model: '/artifacts/creuset.glb',
+        model: '/artifacts/matou.glb',
         ar: {
             title: 'قوالب صهر وسبائك',
             desc: 'قوالب للصهر وسبائك نحاسية تبين أهمية العدانة في مدينة ٱوداكوست الأثرية',
