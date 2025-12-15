@@ -6,7 +6,7 @@ const ArtifactCard = ({ artifact, currentLang, isDarkMode }) => {
     return (
         <div className="card">
             <div className="model-viewer-wrapper">
-                <span className="badge">{data.badge}</span>
+
                 <model-viewer
                     src={artifact.model}
                     alt={data.title}

@@ -37,7 +37,7 @@ function App() {
             <section className="hero">
                 <div className="container">
                     <div className="hero-emblem">
-                        {currentLang === 'ar' ? 'شرف - إخاء - عدل' : 'Honneur - Fraternité - Justice'}
+                        {currentLang === 'ar' ? 'وزارة الثقافة والفنون والاتصال' : 'Ministère de la Culture, des Arts et de la Communication'}
                     </div>
 
                     <h2 className="hero-title">
@@ -87,14 +87,7 @@ function App() {
                                 <li><a href="#">{currentLang === 'ar' ? 'الزيارة' : 'Visiter'}</a></li>
                             </ul>
                         </div>
-                        <div className="footer-col">
-                            <h4>{currentLang === 'ar' ? 'اتصل بنا' : 'Contact'}</h4>
-                            <ul className="footer-links">
-                                <li><a href="#">contact@museum.mr</a></li>
-                                <li><a href="#">+222 45 25 00 00</a></li>
-                                <li><a href="#">Nouakchott, Mauritanie</a></li>
-                            </ul>
-                        </div>
+
                     </div>
                     <div className="copyright">
                         <p>&copy; 2025 Office National des Musées - Mauritanie</p>
