@@ -1,7 +1,7 @@
 export const artifacts = [
     {
         id: '1',
-        model: '/artifacts/lance.glb',
+        model: '/artifacts/knife.glb',
         ar: {
             title: 'حربة رمح ذات تجويف',
             desc: 'حربة رمح ذات تجويف وهي أطول ما نعرفه حتى الٱن من هذا الصنف ( 48 سم) وقد اختفى جل هذه القطع النادرة  بسبب النهب.',
