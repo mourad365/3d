@@ -1,24 +1,6 @@
 export const artifacts = [
     {
         id: '1',
-        model: '/artifacts/knife.glb',
-        ar: {
-            title: 'حربة رمح ذات تجويف',
-            desc: 'حربة رمح ذات تجويف وهي أطول ما نعرفه حتى الٱن من هذا الصنف ( 48 سم) وقد اختفى جل هذه القطع النادرة  بسبب النهب.',
-            period: 'غير محدد',
-            material: 'معدن',
-            badge: 'نادرة'
-        },
-        fr: {
-            title: 'Pointe de lance à douille',
-            desc: 'Pointe de lance à douille. Sa taille 48 cm en fait la plus longue connue. La plupart de ces objets rares ont disparu victime du pillage.',
-            period: 'Indéterminé',
-            material: 'Métal',
-            badge: 'Rare'
-        }
-    },
-    {
-        id: '2',
         model: '/artifacts/matou.glb',
         ar: {
             title: 'قوالب صهر وسبائك',
@@ -33,6 +15,24 @@ export const artifacts = [
             period: 'Indéterminé',
             material: 'Cuivre',
             badge: 'Archéologique'
+        }
+    },
+    {
+        id: '2',
+        model: '/artifacts/knife.glb',
+        ar: {
+            title: 'حربة رمح ذات تجويف',
+            desc: 'حربة رمح ذات تجويف وهي أطول ما نعرفه حتى الٱن من هذا الصنف ( 48 سم) وقد اختفى جل هذه القطع النادرة  بسبب النهب.',
+            period: 'غير محدد',
+            material: 'معدن',
+            badge: 'نادرة'
+        },
+        fr: {
+            title: 'Pointe de lance à douille',
+            desc: 'Pointe de lance à douille. Sa taille 48 cm en fait la plus longue connue. La plupart de ces objets rares ont disparu victime du pillage.',
+            period: 'Indéterminé',
+            material: 'Métal',
+            badge: 'Rare'
         }
     },
     {
