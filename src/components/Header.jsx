@@ -11,7 +11,7 @@ const Header = ({ currentLang, setLang, isDarkMode, toggleTheme }) => {
                             {currentLang === 'ar' ? (
                                 <>
                                     <h1>الجمهورية الإسلامية الموريتانية</h1>
-                                    <p>وزارة الثقافة والفنون والاتصال</p>
+                                    <p>شرف - إخاء - عدل</p>
                                 </>
                             ) : (
                                 <>
