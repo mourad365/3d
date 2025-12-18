@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتب الوطني للمتاحف - Office National des Musées</title>
+    
+    <!-- Google Fonts (embedded fallback if offline) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Model Viewer CDN -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
+    <style>
+        :root {
+            /* Light Mode Variables */
+            --primary-hue: 35;
+            --primary-color: hsl(var(--primary-hue), 80%, 35%);
+            --accent-color: hsl(var(--primary-hue), 60%, 50%);
+
+            --bg-color: #fdfbf7;
+            --bg-secondary: #f3efe9;
+            --card-bg: #ffffff;
+
+            --text-main: #2d2a26;
+            --text-muted: #66605b;
+            --border-color: #e6e0d8;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            /* Dark Mode Variables */
+            --primary-color: hsl(var(--primary-hue), 70%, 60%);
+            --accent-color: hsl(var(--primary-hue), 80%, 70%);
+
+            --bg-color: #121212;
+            --bg-secondary: #1e1e1e;
+            --card-bg: #252525;
+
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Tajawal', 'Outfit', sans-serif;
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text-main);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary-color);
+        }
+
+        .btn.primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn.primary:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: var(--card-bg);
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+        }
+
+        .hero-emblem {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .model-viewer-wrapper {
+            position: relative;
+            background: var(--bg-secondary);
+            height: 400px;
+            overflow: hidden;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            --poster-color: transparent;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: 'Amiri', serif;
+        }
+
+        .card-info {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo h3 {
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            font-family: 'Amiri', serif;
+        }
+
+        .footer-col h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* French Overrides */
+        body.lang-fr {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body.lang-fr .card-title,
+        body.lang-fr .hero-emblem,
+        body.lang-fr .footer-logo h3 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                height: auto;
+                padding: 20px 0;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .brand {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="lang-ar">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="brand">
+                    <img src="public/logo.svg" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+                    <div class="brand-text">
+                        <h1 id="brand-title">الجمهورية الإسلامية الموريتانية</h1>
+                        <p id="brand-subtitle">شرف - إخاء - عدل</p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="icon-btn" onclick="toggleTheme()" title="Theme">
+                        <svg class="icon sun" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+
+                    <button class="btn primary" id="btn-ar" onclick="setLanguage('ar')">
+                        العربية
+                    </button>
+                    <button class="btn" id="btn-fr" onclick="setLanguage('fr')">
+                        Français
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-emblem" id="hero-emblem">
+                وزارة الثقافة والفنون والاتصال والعلاقات مع البرلمان
+            </div>
+
+            <h2 class="hero-title" id="hero-title">
+                المكتب الوطني للمتاحف
+            </h2>
+
+            <p id="hero-desc" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--text-muted);">
+                منصة رقمية تفاعلية لعرض وتوثيق التراث الثقافي الموريتاني بتقنيات ثلاثية الأبعاد
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <main class="gallery">
+        <div class="container">
+            <div class="grid" id="artifacts-grid">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <h3 id="footer-title">المكتب الوطني للمتاحف</h3>
+                    <p id="footer-motto" style="color: var(--text-muted);">
+                        حفظ التراث.. صون للهوية.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4 id="footer-links-title">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" id="footer-link-1">عن المكتب</a></li>
+                        <li><a href="#" id="footer-link-2">المجموعات</a></li>
+                        <li><a href="#" id="footer-link-3">الزيارة</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Office National des Musées - Mauritanie</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data
+        const artifacts = [
+            {
+                id: '1',
+                model: 'public/artifacts/matou.glb',
+                ar: {
+                    title: 'قوالب صهر وسبائك',
+                    desc: 'قوالب للصهر وسبائك نحاسية تبين أهمية العدانة في مدينة ٱوداكوست الأثرية',
+                    period: 'غير محدد',
+                    material: 'نحاس',
+                    badge: 'أثري'
+                },
+                fr: {
+                    title: 'Creuset et lingots',
+                    desc: 'Creuset moules et lingots du cuivre montrent l\'importance des activités métallurgiques à Tegdaoust',
+                    period: 'Indéterminé',
+                    material: 'Cuivre',
+                    badge: 'Archéologique'
+                }
+            },
+            {
+                id: '2',
+                model: 'public/artifacts/knife.glb',
+                ar: {
+                    title: 'حربة رمح ذات تجويف',
+                    desc: 'حربة رمح ذات تجويف وهي أطول ما نعرفه حتى الٱن من هذا الصنف ( 48 سم) وقد اختفى جل هذه القطع النادرة  بسبب النهب.',
+                    period: 'غير محدد',
+                    material: 'معدن',
+                    badge: 'نادرة'
+                },
+                fr: {
+                    title: 'Pointe de lance à douille',
+                    desc: 'Pointe de lance à douille. Sa taille 48 cm en fait la plus longue connue. La plupart de ces objets rares ont disparu victime du pillage.',
+                    period: 'Indéterminé',
+                    material: 'Métal',
+                    badge: 'Rare'
+                }
+            },
+            {
+                id: '3',
+                model: 'public/artifacts/Louche.glb',
+                ar: {
+                    title: 'مغراف من الحديد',
+                    desc: 'مغراف من الحديد من تكداوست حيث كان استخدام وتصنيع الحديد شائعا في القرنين ال 10  و11 الميلادي',
+                    period: 'القرن ال 10 و 11',
+                    material: 'حديد',
+                    badge: 'تاريخي'
+                },
+                fr: {
+                    title: 'Louche en fer',
+                    desc: 'Une louche en fer provenant de Tekdaoust, où l\'utilisation et la fabrication du fer étaient courantes aux Xᵉ et XIᵉ siècles après J.-C.',
+                    period: 'Xᵉ et XIᵉ siècles',
+                    material: 'Fer',
+                    badge: 'Historique'
+                }
+            }
+        ];
+
+        // State
+        let currentLang = 'ar';
+        let isDarkMode = false;
+
+        // Initialize
+        function init() {
+            // Check system preference for dark mode
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                isDarkMode = true;
+                document.body.classList.add('dark-mode');
+                updateThemeIcon();
+            }
+            
+            renderArtifacts();
+            updateLanguage();
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const sun = document.querySelector('.sun');
+            const moon = document.querySelector('.moon');
+            if (isDarkMode) {
+                sun.style.display = 'block';
+                moon.style.display = 'none';
+            } else {
+                sun.style.display = 'none';
+                moon.style.display = 'block';
+            }
+        }
+
+        // Language Toggle
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.className = `lang-${lang} ${isDarkMode ? 'dark-mode' : ''}`;
+            
+            // Update button styles
+            document.getElementById('btn-ar').className = lang === 'ar' ? 'btn primary' : 'btn';
+            document.getElementById('btn-fr').className = lang === 'fr' ? 'btn primary' : 'btn';
+            
+            updateLanguage();
+            renderArtifacts();
+        }
+
+        // Update Language Content
+        function updateLanguage() {
+            if (currentLang === 'ar') {
+                document.getElementById('brand-title').textContent = 'الجمهورية الإسلامية الموريتانية';
+                document.getElementById('brand-subtitle').textContent = 'شرف - إخاء - عدل';
+                document.getElementById('hero-emblem').textContent = 'وزارة الثقافة والفنون والاتصال والعلاقات مع البرلمان';
+                document.getElementById('hero-title').textContent = 'المكتب الوطني للمتاحف';
+                document.getElementById('hero-desc').textContent = 'منصة رقمية تفاعلية لعرض وتوثيق التراث الثقافي الموريتاني بتقنيات ثلاثية الأبعاد';
+                document.getElementById('footer-title').textContent = 'المكتب الوطني للمتاحف';
+                document.getElementById('footer-motto').textContent = 'حفظ التراث.. صون للهوية.';
+                document.getElementById('footer-links-title').textContent = 'روابط سريعة';
+                document.getElementById('footer-link-1').textContent = 'عن المكتب';
+                document.getElementById('footer-link-2').textContent = 'المجموعات';
+                document.getElementById('footer-link-3').textContent = 'الزيارة';
+            } else {
+                document.getElementById('brand-title').textContent = 'République Islamique de Mauritanie';
+                document.getElementById('brand-subtitle').textContent = 'Ministère de la Culture';
+                document.getElementById('hero-emblem').textContent = 'Le Ministère de la Culture, des Arts, de la Communication et des Relations avec le Parlement';
+                document.getElementById('hero-title').textContent = 'Office National des Musées';
+                document.getElementById('hero-desc').textContent = 'Une plateforme numérique interactive pour documenter le patrimoine culturel mauritanien en 3D.';
+                document.getElementById('footer-title').textContent = 'Office National des Musées';
+                document.getElementById('footer-motto').textContent = 'Préserver le patrimoine... Protéger l\'identité.';
+                document.getElementById('footer-links-title').textContent = 'Liens Rapides';
+                document.getElementById('footer-link-1').textContent = 'À propos';
+                document.getElementById('footer-link-2').textContent = 'Collections';
+                document.getElementById('footer-link-3').textContent = 'Visiter';
+            }
+        }
+
+        // Render Artifacts
+        function renderArtifacts() {
+            const grid = document.getElementById('artifacts-grid');
+            const exposure = isDarkMode ? '1.2' : '1';
+            
+            grid.innerHTML = artifacts.map(artifact => {
+                const data = artifact[currentLang];
+                return `
+                    <div class="card">
+                        <div class="model-viewer-wrapper">
+                            <model-viewer
+                                src="${artifact.model}"
+                                alt="${data.title}"
+                                auto-rotate
+                                camera-controls
+                                shadow-intensity="1"
+                                environment-image="neutral"
+                                exposure="${exposure}"
+                                orbit-sensitivity="1.5"
+                                auto-rotate-delay="0"
+                                style="width: 100%; height: 100%; --poster-color: transparent;"
+                            ></model-viewer>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">${data.title}</h3>
+                            <div class="card-info">
+                                <span class="info-item">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    ${data.period}
+                                </span>
+                                <span class="info-item">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    </svg>
+                                    ${data.material}
+                                </span>
+                            </div>
+                            <p class="card-desc">${data.desc}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

@@ -37,7 +37,7 @@ function App() {
             <section className="hero">
                 <div className="container">
                     <div className="hero-emblem">
-                        {currentLang === 'ar' ? 'وزارة الثقافة والشباب والرياضة والعلاقات مع البرلمان' : 'Ministère de la Culture, des Arts et de la Communication'}
+                        {currentLang === 'ar' ? 'وزارة الثقافة والفنون والاتصال والعلاقات مع البرلمان' : 'Le Ministère de la Culture, des Arts, de la Communication et des Relations avec le Parlement'}
                     </div>
 
                     <h2 className="hero-title">
